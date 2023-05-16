@@ -64,8 +64,12 @@ const applicationList = ()=>{
     indexTaskList.innerHTML='';
     applicationSave.forEach(applicationCreate=>{
         const applicationComplete = applicationCreate.complete ? '(complete)' : '';
-        indexItemList.innerText = `${applicationCreate.name} - Priority: ${applicationCreate.priority}${applicationComplete}`;
-        indexTaskList.appendChild(indexItemList);
+
+        let nuevoElemento = document.createElement("li");
+        let textoElemento = document.createTextNode(`${applicationCreate.name} - Priority: ${applicationCreate.priority}${applicationComplete}`);
+        nuevoElemento.appendChild(textoElemento);
+        indexTaskList.appendChild(nuevoElemento);
+
 
         //agregar un listener para seleccionar elementos y editar
         indexItemList.addEventListener('click',()=>{
@@ -84,11 +88,7 @@ indexAddButton.addEventListener('click',()=>{
 
     let tarea = indexNameTask.value; // aqui obtienes el valor del input al dar click (name)
     let prioridad = indexPriorityTask.value; // aqui obtienes el valor de la prioridad al dar click
-
-    // indexNameTask = applicationCreate.name;
-    // indexPriorityTask = applicationCreate.priority;
     const applicationAddTask = new applicationCreate(tarea,prioridad,false) // creas nueva tarea con los valores obtenidos
-    //console.log(applicationAddTask);
     applicationSave.push(applicationAddTask)
     console.log(applicationSave);
     applicationList();
