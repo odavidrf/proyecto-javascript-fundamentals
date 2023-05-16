@@ -71,14 +71,12 @@ const applicationList = ()=>{
         nuevoElemento.style.cursor = "pointer";
         indexTaskList.appendChild(nuevoElemento);
 
-
         //agregar un listener para seleccionar elementos y editar
         nuevoElemento.addEventListener('click',()=>{
             indexEditTask.value = applicationCreate.name
             indexNewPriorityTask.value = applicationCreate.priority
          });
 
-        
     });
 
 }
@@ -88,9 +86,17 @@ indexAddButton.addEventListener('click',()=>{
 
     let tarea = indexNameTask.value; // aqui obtienes el valor del input al dar click (name)
     let prioridad = indexPriorityTask.value; // aqui obtienes el valor de la prioridad al dar click
-    const applicationAddTask = new applicationCreate(tarea,prioridad,false) // creas nueva tarea con los valores obtenidos
-    applicationSave.push(applicationAddTask)
-    applicationList();
+    if(tarea != ''){
+        const applicationAddTask = new applicationCreate(tarea,prioridad,false) // creas nueva tarea con los valores obtenidos
+        applicationSave.push(applicationAddTask)
+        applicationList();
+        indexNameTask.value ='';
+        indexPriorityTask.value = 1;
+    }
+    else{
+        alert("¡La tarea no puede estar vacía!");
+    }
+
 })
 
 //agregar un listener para el boton de ordenar las tareas
@@ -110,7 +116,10 @@ indexDelButton.addEventListener('click', ()=>{
 indexEditButton.addEventListener('click',()=>{
     applicationEditByName(indexEditTask.value,indexNewPriorityTask.value);
     applicationList();
+    indexEditTask.value ='';
+    indexNewPriorityTask.value = 1;
 })
+
 
 
 
