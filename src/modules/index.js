@@ -1,6 +1,6 @@
 // tomamos la tarea ingresada en la consulta
 
-const nameTask=document.getElementById('mainNaeTask');
+const nameTask=document.getElementById('mainNameTask');
 const priorityTask=document.getElementById('mainPriorityTask');
 const TaskList=document.getElementById('mainTaskList');
 const itemList=document.createElement('li');
@@ -13,8 +13,8 @@ const EditTask=document.getElementById('editTask')
 const PriorityOrder=document.getElementById('mainPriorityOrder')
 
 
-export const indexNameTask = nameTask.value;
-export const indexPriorityTask = priorityTask.value;
+export const indexNameTask = nameTask;
+export const indexPriorityTask = priorityTask;
 export const indexTaskList = TaskList;
 export const indexItemList = itemList;
 export const indexEditTask = EditTask;

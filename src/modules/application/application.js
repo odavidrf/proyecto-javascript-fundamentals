@@ -14,11 +14,11 @@ import {
 
 //clase para crear las tareas
 export class applicationCreate {
-  constructor(name,priority,complete){
-    name = this.name;
-    priority = this.priority;
-    complete = this.complete;
-  }  
+    constructor(name,priority,complete){
+      this.name = name;
+      this.priority =  priority ;
+      this.complete = complete;
+    }  
 }
 
 //arreglo poara guardar las tareas Creadas
@@ -67,7 +67,7 @@ const applicationList = ()=>{
         indexItemList.innerText = `${applicationCreate.name} - Priority: ${applicationCreate.priority}${applicationComplete}`;
         indexTaskList.appendChild(indexItemList);
 
-//agregar un listener para seleccionar elementos y editar
+        //agregar un listener para seleccionar elementos y editar
         indexItemList.addEventListener('click',()=>{
 
             indexItemList.addEventListener('click',()=>{
@@ -81,10 +81,16 @@ const applicationList = ()=>{
 
 //agregar un listener para el boton de agregar una tarea (creando instancia de la clase)
 indexAddButton.addEventListener('click',()=>{
-    indexNameTask = applicationCreate.name;
-    indexPriorityTask = applicationCreate.priority;
-    const applicationAddTask = new applicationCreate(indexNameTask,indexPriorityTask,false)
+
+    let tarea = indexNameTask.value; // aqui obtienes el valor del input al dar click (name)
+    let prioridad = indexPriorityTask.value; // aqui obtienes el valor de la prioridad al dar click
+
+    // indexNameTask = applicationCreate.name;
+    // indexPriorityTask = applicationCreate.priority;
+    const applicationAddTask = new applicationCreate(tarea,prioridad,false) // creas nueva tarea con los valores obtenidos
+    //console.log(applicationAddTask);
     applicationSave.push(applicationAddTask)
+    console.log(applicationSave);
     applicationList();
 })
 
