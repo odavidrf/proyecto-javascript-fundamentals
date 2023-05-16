@@ -68,17 +68,17 @@ const applicationList = ()=>{
         let nuevoElemento = document.createElement("li");
         let textoElemento = document.createTextNode(`${applicationCreate.name} - Priority: ${applicationCreate.priority}${applicationComplete}`);
         nuevoElemento.appendChild(textoElemento);
+        nuevoElemento.style.cursor = "pointer";
         indexTaskList.appendChild(nuevoElemento);
 
 
         //agregar un listener para seleccionar elementos y editar
-        indexItemList.addEventListener('click',()=>{
+        nuevoElemento.addEventListener('click',()=>{
+            indexEditTask.value = applicationCreate.name
+            indexNewPriorityTask.value = applicationCreate.priority
+         });
 
-            indexItemList.addEventListener('click',()=>{
-                indexEditTask.value = applicationCreate.name
-                indexNewPriorityTask.value = applicationCreate.priority });
-
-        });
+        
     });
 
 }
@@ -90,7 +90,6 @@ indexAddButton.addEventListener('click',()=>{
     let prioridad = indexPriorityTask.value; // aqui obtienes el valor de la prioridad al dar click
     const applicationAddTask = new applicationCreate(tarea,prioridad,false) // creas nueva tarea con los valores obtenidos
     applicationSave.push(applicationAddTask)
-    console.log(applicationSave);
     applicationList();
 })
 
@@ -108,7 +107,7 @@ indexDelButton.addEventListener('click', ()=>{
 })
 
 //agregar un listener para el boton editar tarea
-indexEditButton.addEventListener('clicl',()=>{
+indexEditButton.addEventListener('click',()=>{
     applicationEditByName(indexEditTask.value,indexNewPriorityTask.value);
     applicationList();
 })
