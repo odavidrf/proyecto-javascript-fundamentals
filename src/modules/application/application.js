@@ -69,12 +69,15 @@ const applicationList = ()=>{
         let textoElemento = document.createTextNode(`${applicationCreate.name} - Priority: ${applicationCreate.priority}${applicationComplete}`);
         nuevoElemento.appendChild(textoElemento);
         nuevoElemento.style.cursor = "pointer";
+        nuevoElemento.classList.add("list-group-item");
         indexTaskList.appendChild(nuevoElemento);
 
         //agregar un listener para seleccionar elementos y editar
         nuevoElemento.addEventListener('click',()=>{
             indexEditTask.value = applicationCreate.name
             indexNewPriorityTask.value = applicationCreate.priority
+            indexDelTask.value = applicationCreate.name
+
          });
 
     });
@@ -110,15 +113,22 @@ indexOrderTask.addEventListener('click',()=>{
 indexDelButton.addEventListener('click', ()=>{
    DeleteByName(indexDelTask.value);
    applicationList();
+   limpiar();
+
 })
 
 //agregar un listener para el boton editar tarea
 indexEditButton.addEventListener('click',()=>{
     applicationEditByName(indexEditTask.value,indexNewPriorityTask.value);
     applicationList();
+    limpiar();
+})
+
+const limpiar = ()=>{
     indexEditTask.value ='';
     indexNewPriorityTask.value = 1;
-})
+    indexDelTask.value = '';
+}
 
 
 
